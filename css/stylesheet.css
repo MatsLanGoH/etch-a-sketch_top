@@ -3,6 +3,16 @@
     height: 30px;
     margin: 0;
     padding: 0;
-    border: 0;
+    border: 0px solid #ccffff;
     background-color: #cccccc;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+td, tr, div {
+    border: none;
+    margin: 0;
+    padding: 0;
 }

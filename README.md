@@ -7,7 +7,7 @@ The goal of this exercise is to create a browser version of something between
 a sketchpad and an Etch-a-sketch, using Javascript, jQuery, and CSS.
 
 Details concerning the implementations can be found on the
-[http://www.theodinproject.com/web-development-101/javascript-and-jquery](Project Page at The Odin Project).
+[Project Page at The Odin Project](http://www.theodinproject.com/web-development-101/javascript-and-jquery).
 
 ## Features
 
@@ -28,12 +28,14 @@ Details concerning the implementations can be found on the
   - You have several options to change the color. Adding a new class(`addClass()`), changing `background-color` individually, etc.
 
 * ~~Add a button to the top of the screen which will clear the current grid and send the user a popup asking for how many squares per side to make the new grid.~~ Done.
-Once entered, the new grid should be generated *in the same total space as before* (e.g. 960px wide).
+~~Once entered, the new grid should be generated *in the same total space as before* (e.g. 960px wide).~~ Done.
   - Research `button` tags in HTML and how to invoke a JS function upon clicking.
   - Check out `prompt`s.
   - Too slow? Check code efficiency!
 
 * Optional: How about random color options, or gradually increasing the density of blackness (i.e. by adding 10% of black per pass).
+
+* Improve CSS stylesheet.
 
 * Push your project to Github.
 
