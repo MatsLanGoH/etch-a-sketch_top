@@ -5,6 +5,7 @@ $(document).ready(function() {
     buildTable(rows, cols);
 });
 
+
 function buildTable(rows, cols) {
     $('#tilebox').empty();
     $('#tilebox').append('<table id="sketch_grid">');
@@ -24,7 +25,11 @@ function buildTable(rows, cols) {
 
 
 function resetTable() {
+    $('.tile').css('background-color', '#cccccc');
+}
 
+
+function resizeTable() {
     rows = prompt("Please enter new number of rows: ", rows);
     while (isNaN(rows) || (rows < 4)) {
         rows = prompt ("Please enter a valid number.");
@@ -34,9 +39,9 @@ function resetTable() {
         cols = prompt ("Please enter a valid number.");
     }
 
-
     buildTable(rows, cols);
 }
+
 
 function enableDrawing() {
     $('.tile').hover(function() {
@@ -46,11 +51,13 @@ function enableDrawing() {
 
 
 function setTileSize() {
-    console.log(window.innerWidth, window.innerHeight);
+    // console.log(window.innerWidth, window.innerHeight);
     tile_width = Math.floor(window.innerWidth * 0.8 / cols);
     tile_height = Math.floor(window.innerHeight * 0.8 / rows);
-    console.log(tile_width, tile_height);
-    console.log(tile_width * cols, tile_height * rows);
+
+    // console.log(tile_width, tile_height);
+    // console.log(tile_width * cols, tile_height * rows);
+
     if (tile_width * rows > window.innerWidth) {
         $('.tile').height(tile_height).width(tile_height);
     } else {
