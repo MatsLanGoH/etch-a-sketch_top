@@ -27,7 +27,7 @@ Details concerning the implementations can be found on the
   - (Think about which events happen when *hover*ing. You *enter* and *leave* the div.)
   - You have several options to change the color. Adding a new class(`addClass()`), changing `background-color` individually, etc.
 
-* Add a button to the top of the screen which will clear the current grid and send the user a popup asking for how many squares per side to make the new grid.
+* ~~Add a button to the top of the screen which will clear the current grid and send the user a popup asking for how many squares per side to make the new grid.~~ Done.
 Once entered, the new grid should be generated *in the same total space as before* (e.g. 960px wide).
   - Research `button` tags in HTML and how to invoke a JS function upon clicking.
   - Check out `prompt`s.
