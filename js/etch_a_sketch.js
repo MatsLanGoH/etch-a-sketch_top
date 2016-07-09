@@ -1,5 +1,10 @@
 $(document).ready(function() {
-    buildTable(16, 16)
+    buildTable(16, 16);
+
+    $('.tile').hover(function() {
+        $(this).css('background-color', '#000000');
+    });
+
 });
 
 function buildTable(width, height) {

@@ -17,13 +17,13 @@ Details concerning the implementations can be found on the
   - Used `table` to create a grid.
 
 ## Todos
-* ~~Create a web page with a 16x16 grid of square divs.~~
+* ~~Create a web page with a 16x16 grid of square divs.~~ Done.
   - Create divs using JS/jQuery.
   - Put grid squares into a container div
   - Consider different ways to make the divs appear as a grid:
     `float`/`clear`, using a `table`, and `inline-block` displays.
 
-* Set up a hover effect to change the color of the square when your mouse passes over it, leaving a pixellated trail like a pen would.
+* ~~Set up a hover effect to change the color of the square when your mouse passes over it, leaving a pixellated trail like a pen would.~~ Done.
   - (Think about which events happen when *hover*ing. You *enter* and *leave* the div.)
   - You have several options to change the color. Adding a new class(`addClass()`), changing `background-color` individually, etc.
 
