@@ -33,7 +33,7 @@ Details concerning the implementations can be found on the
   - Check out `prompt`s.
   - Too slow? Check code efficiency!
 
-* Optional: How about random color options, or gradually increasing the density of blackness (i.e. by adding 10% of black per pass).
+* Optional: ~~How about random color options, or gradually increasing the density of blackness (i.e. by adding 10% of black per pass).~~ Done, done, and done.
 
 * Improve CSS stylesheet.
 
