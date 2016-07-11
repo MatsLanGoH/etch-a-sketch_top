@@ -5,13 +5,21 @@ random_colors = false;
 gradient_colors = false;
 
 $(document).ready(function() {
-    buildTable(numOfSquares);
-    enableDrawing();
+    buildTable();
 });
 
-function buildTable(numOfSquares) {
+function buildTable() {
+    /* Creates a new sketchpad in the DOM
+     * Size is calculated from global variable numOfSquares
+     */
+
+    // turn off existing hover effects
+    $('.tile').off('mouseenter mouseleave');    
+
+    // Clear DOM and attach table with sketchpad elements
     $('#tilebox').empty();
     $('#tilebox').append('<table id="sketch_grid">');
+
     for (var i = numOfSquares - 1; i >= 0; i--) {
         $('#sketch_grid').append('<tr id="row' + (numOfSquares - i) + '">');
         for (var j = numOfSquares - 1; j >= 0; j--) {
@@ -19,50 +27,43 @@ function buildTable(numOfSquares) {
         }
         $('#sketch_grid').append('</tr>');
     }
-    // The table that contains the squares is given a background-color
-    // that is slowly revealed by reducing the opacity of the squares.
+
+    // Add background color in table 
+    // (this color is gradually revealed when using gradient drawing)
     $('#sketch_grid').css('background-color', '#000000');
 
     setTileSize();
-
-
-}
-
-
-function resetTable() {
-    // Switch off other hover effects.
-    $('.tile').off('mouseenter mouseleave');
-
-    // $('.tile').css({
-    //     'background-color': background_color,
-    //     'opacity': '1.0'
-    // });
-
-    buildTable(numOfSquares);
     enableDrawing();
 
 }
 
-
 function resizeTable() {
+    /* Prompts user for new table size and redraws the sketchpad accordingly. 
+     * Invalid input redraws the sketchpad at the current settings. */
     input = prompt("Please enter new number of squares in a line: ", numOfSquares);
 
-    console.log(input);
-
     while (!isNaN(input) && ((input < 4) || (input > 96))) {
-        input = prompt ("Please enter a number between 4 and 96.");
+        input = prompt("Please enter a number between 4 and 96.");
     }
     if (!isNaN(input)) {
         numOfSquares = input;
     }
 
-    buildTable(numOfSquares);
-    enableDrawing();
+    buildTable();
 }
 
 
+function setTileSize() {
+    /* Adjust square width according to number of squares */
+    tile_width = (800 / numOfSquares);
+    $('.tile').height(tile_width).width(tile_width);
+}
+
+
+
 function enableDrawing() {
-    if(random_colors) {
+    /* Enables drawing on sketchpad */
+    if (random_colors) {
         enableColorDrawing();
     } else if (gradient_colors) {
         enableGradient();
@@ -73,15 +74,25 @@ function enableDrawing() {
     });
 }
 
-function setColorToBlack() {
-    resetColorState();
-    sketch_color = '#000000';
-    resetTable();
+
+function resetColorState() {
+    /* Resets color state for drawing function */
+    gradient_colors = false;
+    random_colors = false;
 }
 
+
+function setColorToBlack() {
+    /* Sets Color state to black and redraws table */
+    resetColorState();
+    sketch_color = '#000000';
+    buildTable();
+}
+
+
 function enableGradient() {
+    /* Enables gradient coloring */
     sketch_color = background_color;
-    // $('.tile').css('opacity', '1.0');
 
     $('.tile').hover(function(event) {
         $(event.target).css({
@@ -91,56 +102,18 @@ function enableGradient() {
 
 }
 
-
 function setColorToGradient() {
+    /* Sets Color state to gradient and redraws table */
     resetColorState();
     random_colors = false;
     gradient_colors = true;
-    resetTable();
+    buildTable();
 }
 
-
-function randomizeColors() {
-    resetColorState();
-    random_colors = true;
-    resetTable();
-}
-
-
-function enableColorDrawing() {
-    sketch_color = rainbow();
-    $('.tile').hover(function() {
-        /* Stuff to do when the mouse enters the element */
-        // console.log(sketch_color);
-    }, function() {
-        sketch_color = rainbow();
-        /* Stuff to do when the mouse leaves the element */
-    });
-}
-
-
-function resetColorState() {
-    gradient_colors = false;
-    random_colors = false;
-}
-
-function setTileSize() {
-    // console.log(window.innerWidth, window.innerHeight);
-    tile_width = (800 / numOfSquares);
-    // tile_height = Math.floor(window.innerHeight * 0.3 / numOfSquares);
-
-    // console.log(tile_width, tile_height);
-    // console.log(tile_width * cols, tile_height * rows);
-
-    // if (tile_width * numOfSquares > window.innerWidth) {
-    //     $('.tile').height(tile_height).width(tile_height);
-    // } else {
-        $('.tile').height(tile_width).width(tile_width);
-    // }
-}
 
 
 function rainbow() {
+    /* Returns random color value */
     // Solution from http://stackoverflow.com/a/14187677/5087595
     var numOfHues = 30;
     var numOfSteps = 12;
@@ -153,3 +126,22 @@ function rainbow() {
         alpha: 1
     }).toHexString();
 };
+
+
+function enableColorDrawing() {
+    /* Enables random coloring */
+    sketch_color = rainbow();
+    $('.tile').hover(function() {
+    }, function() {
+        sketch_color = rainbow();
+    });
+}
+
+
+function randomizeColors() {
+    /* Sets Color state to random and redraws table */
+    resetColorState();
+    random_colors = true;
+    buildTable();
+}
+
