@@ -40,22 +40,26 @@ function buildTable() {
 function resizeTable() {
     /* Prompts user for new table size and redraws the sketchpad accordingly. 
      * Invalid input redraws the sketchpad at the current settings. */
-    input = prompt("Please enter new number of squares in a line: ", numOfSquares);
 
-    while (!isNaN(input) && ((input < 4) || (input > 96))) {
-        input = prompt("Please enter a number between 4 and 96.");
+    input = prompt("Please enter a number between 4 and 96.", numOfSquares);
+
+    // Cancelling the prompt doesn't redraw the table.
+    if (input === '') {
+        return;
     }
-    if (!isNaN(input)) {
+
+    if ((input >= 4) || (input <= 96)) {
         numOfSquares = input;
     }
 
     buildTable();
+
 }
 
 
 function setTileSize() {
     /* Adjust square width according to number of squares */
-    tile_width = (800 / numOfSquares);
+    tile_width = Math.floor(800 / numOfSquares);
     $('.tile').height(tile_width).width(tile_width);
 }
 
