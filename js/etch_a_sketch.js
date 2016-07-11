@@ -1,22 +1,27 @@
-rows = 16;
-cols = 16;
+numOfSquares = 16;
 sketch_color = '#000000';
+background_color = '#cccccc'
+random_colors = false;
+gradient_colors = false;
 
 $(document).ready(function() {
-    buildTable(rows, cols);
+    buildTable(numOfSquares);
     enableDrawing();
 });
 
-function buildTable(rows, cols) {
+function buildTable(numOfSquares) {
     $('#tilebox').empty();
     $('#tilebox').append('<table id="sketch_grid">');
-    for (var i = rows - 1; i >= 0; i--) {
-        $('#sketch_grid').append('<tr id="row' + (rows - i) + '">');
-        for (var j = cols - 1; j >= 0; j--) {
-            $('#row' + (rows - i)).append('<td><div class="tile"></div></td>');
+    for (var i = numOfSquares - 1; i >= 0; i--) {
+        $('#sketch_grid').append('<tr id="row' + (numOfSquares - i) + '">');
+        for (var j = numOfSquares - 1; j >= 0; j--) {
+            $('#row' + (numOfSquares - i)).append('<td><div class="tile"></div></td>');
         }
         $('#sketch_grid').append('</tr>');
     }
+    // The table that contains the squares is given a background-color
+    // that is slowly revealed by reducing the opacity of the squares.
+    $('#sketch_grid').css('background-color', '#000000');
 
     setTileSize();
 
@@ -28,74 +33,85 @@ function resetTable() {
     // Switch off other hover effects.
     $('.tile').off('mouseenter mouseleave');
 
-    $('.tile').css({
-        'background-color': '#cccccc',
-        'opacity': '1.0'
-    });
+    // $('.tile').css({
+    //     'background-color': background_color,
+    //     'opacity': '1.0'
+    // });
 
+    buildTable(numOfSquares);
     enableDrawing();
 
 }
 
 
 function resizeTable() {
-    rows = prompt("Please enter new number of rows: ", rows);
-    while (isNaN(rows) || (rows < 4)) {
-        rows = prompt ("Please enter a valid number.");
+    input = prompt("Please enter new number of squares in a line: ", numOfSquares);
+
+    console.log(input);
+
+    while (!isNaN(input) && ((input < 4) || (input > 96))) {
+        input = prompt ("Please enter a number between 4 and 96.");
     }
-    cols = prompt("Please enter new number of cols: ", cols);
-    while (isNaN(cols)) {
-        cols = prompt ("Please enter a valid number.");
+    if (!isNaN(input)) {
+        numOfSquares = input;
     }
 
-    buildTable(rows, cols);
+    buildTable(numOfSquares);
+    enableDrawing();
 }
 
 
 function enableDrawing() {
+    if(random_colors) {
+        enableColorDrawing();
+    } else if (gradient_colors) {
+        enableGradient();
+    }
+
     $('.tile').hover(function() {
         $(this).css('background-color', sketch_color);
     });
 }
 
 function setColorToBlack() {
-    resetTable();
-
+    resetColorState();
     sketch_color = '#000000';
+    resetTable();
 }
 
-
-function setColorToGradient() {
-    resetTable();
-    sketch_color = '#cccccc';
-
-    // The table that contains the squares is given a background-color
-    // that is slowly revealed by reducing the opacity of the squares.
-    $('#sketch_grid').css('background-color', '#000000');
+function enableGradient() {
+    sketch_color = background_color;
     // $('.tile').css('opacity', '1.0');
 
     $('.tile').hover(function(event) {
         $(event.target).css({
             opacity: ($(this).css('opacity') - 0.1)
         });
-    }, function() {
-        /* Stuff to do when the mouse leaves the element */
     });
 
 }
 
 
-function randomizeColors() {
+function setColorToGradient() {
+    resetColorState();
+    random_colors = false;
+    gradient_colors = true;
     resetTable();
-
-    enableColorDrawing();
 }
+
+
+function randomizeColors() {
+    resetColorState();
+    random_colors = true;
+    resetTable();
+}
+
 
 function enableColorDrawing() {
     sketch_color = rainbow();
     $('.tile').hover(function() {
         /* Stuff to do when the mouse enters the element */
-        console.log(sketch_color);
+        // console.log(sketch_color);
     }, function() {
         sketch_color = rainbow();
         /* Stuff to do when the mouse leaves the element */
@@ -103,19 +119,24 @@ function enableColorDrawing() {
 }
 
 
+function resetColorState() {
+    gradient_colors = false;
+    random_colors = false;
+}
+
 function setTileSize() {
     // console.log(window.innerWidth, window.innerHeight);
-    tile_width = Math.floor(window.innerWidth * 0.8 / cols);
-    tile_height = Math.floor(window.innerHeight * 0.3 / rows);
+    tile_width = (800 / numOfSquares);
+    // tile_height = Math.floor(window.innerHeight * 0.3 / numOfSquares);
 
     // console.log(tile_width, tile_height);
     // console.log(tile_width * cols, tile_height * rows);
 
-    if (tile_width * rows > window.innerWidth) {
-        $('.tile').height(tile_height).width(tile_height);
-    } else {
+    // if (tile_width * numOfSquares > window.innerWidth) {
+    //     $('.tile').height(tile_height).width(tile_height);
+    // } else {
         $('.tile').height(tile_width).width(tile_width);
-    }
+    // }
 }
 
 
