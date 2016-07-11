@@ -1,36 +1,48 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Etch-a-Sketch Demo</title>
+    <link href='http://fonts.googleapis.com/css?family=Oleo+Script' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="css/stylesheet.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
     <script type="text/javascript" src="js/etch_a_sketch.js"></script>
 </head>
+
 <body>
     <div id="header">
-        <button onclick="buildTable(); return false;">
-            Reset
-        </button>
-        <button onclick="resizeTable(); return false;">
-            Resize
-        </button>
-        <button onclick="randomizeColors(); return false;">
-            Randomize
-        </button>
-        <button onclick="setColorToBlack(); return false;">
-            Black
-        </button>
-        <button onclick="setColorToGradient(); return false;">
-            Gradient
-        </button>
     </div>
-    <div id="container">
-        <div id="tilebox">
+    <div class="container">
+        <div class="sketch_frame">
+            <h1 class="sketch_title">Etch-a-Sketch</h1>
+            <div class="content">
+                <div class="tilebox">
+                </div>
+            </div>
+
+            <div id="sketch_controls">
+                <button class ="button" onclick="buildTable(); return false;">
+                    Reset
+                </button>
+                <button class ="button" onclick="resizeTable(); return false;">
+                    Resize
+                </button>
+                <button class ="button" onclick="randomizeColors(); return false;">
+                    Randomize
+                </button>
+                <button class ="button" onclick="setColorToBlack(); return false;">
+                    Black
+                </button>
+                <button class ="button" onclick="setColorToGradient(); return false;">
+                    Gradient
+                </button>
+            </div>
         </div>
     </div>
 </body>
+
 </html>
