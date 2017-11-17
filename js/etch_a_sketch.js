@@ -92,7 +92,7 @@ function setColorToBlack() {
     /* Sets Color state to black and redraws table */
     resetColorState();
     sketch_color = '#444444';
-    buildTable();
+    buildTable(numOfSquares);
 }
 
 
@@ -113,7 +113,7 @@ function setColorToGradient() {
     resetColorState();
     random_colors = false;
     gradient_colors = true;
-    buildTable();
+    buildTable(numOfSquares);
 }
 
 
@@ -147,5 +147,5 @@ function randomizeColors() {
     /* Sets Color state to random and redraws table */
     resetColorState();
     random_colors = true;
-    buildTable();
+    buildTable(numOfSquares);
 }
