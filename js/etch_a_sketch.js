@@ -5,7 +5,7 @@ var random_colors = false;
 var gradient_colors = false;
 
 $(document).ready(function() {
-    buildTable();
+    buildTable(numOfSquares);
 });
 
 function buildTable(numOfSquares) {
