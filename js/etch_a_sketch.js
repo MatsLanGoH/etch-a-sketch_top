@@ -42,17 +42,14 @@ function resizeTable() {
     /* Prompts user for new table size and redraws the sketchpad accordingly. 
      * Invalid input redraws the sketchpad at the current settings. */
 
+    var curNumOfSquares = numOfSquares;
+    
     input = prompt("Please enter a number between 4 and 96.", numOfSquares);
-
-    // Cancelling the prompt doesn't redraw the table.
-    if (input === '') {
-        return;
-    }
 
     if ((input >= 4) || (input <= 96)) {
         numOfSquares = input;
     } else {
-        numOfSquares = 16;
+        numOfSquares = curNumOfSquares;
     }
 
     buildTable();
