@@ -1,8 +1,9 @@
-numOfSquares = 16;
-sketch_color = '#444444';
-background_color = '#cccccc'
-random_colors = false;
-gradient_colors = false;
+var numOfSquares = 16;
+var curNumOfSquares = 16;
+var sketch_color = '#444444';
+var background_color = '#cccccc'
+var random_colors = false;
+var gradient_colors = false;
 
 $(document).ready(function() {
     buildTable();
@@ -42,7 +43,7 @@ function resizeTable() {
     /* Prompts user for new table size and redraws the sketchpad accordingly. 
      * Invalid input redraws the sketchpad at the current settings. */
 
-    var curNumOfSquares = numOfSquares;
+    curNumOfSquares = numOfSquares;
     
     input = prompt("Please enter a number between 4 and 96.", numOfSquares);
 
