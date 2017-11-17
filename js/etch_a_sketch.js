@@ -5,10 +5,10 @@ var random_colors = false;
 var gradient_colors = false;
 
 $(document).ready(function() {
-    buildTable(numOfSquares);
+    buildTable();
 });
 
-function buildTable(numOfSquares) {
+function buildTable() {
     /* Creates a new sketchpad in the DOM
      * Size is calculated from global variable numOfSquares
      */
@@ -52,7 +52,7 @@ function resizeTable() {
         numOfSquares = curNumOfSquares;
     }
 
-    buildTable(numOfSquares);
+    buildTable();
 
 }
 
@@ -92,7 +92,7 @@ function setColorToBlack() {
     /* Sets Color state to black and redraws table */
     resetColorState();
     sketch_color = '#444444';
-    buildTable(numOfSquares);
+    buildTable();
 }
 
 
@@ -113,7 +113,7 @@ function setColorToGradient() {
     resetColorState();
     random_colors = false;
     gradient_colors = true;
-    buildTable(numOfSquares);
+    buildTable();
 }
 
 
@@ -147,5 +147,5 @@ function randomizeColors() {
     /* Sets Color state to random and redraws table */
     resetColorState();
     random_colors = true;
-    buildTable(numOfSquares);
+    buildTable();
 }
