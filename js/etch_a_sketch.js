@@ -1,5 +1,4 @@
 var numOfSquares = 16;
-var curNumOfSquares = 16;
 var sketch_color = '#444444';
 var background_color = '#cccccc'
 var random_colors = false;
@@ -9,7 +8,7 @@ $(document).ready(function() {
     buildTable();
 });
 
-function buildTable() {
+function buildTable(numOfSquares) {
     /* Creates a new sketchpad in the DOM
      * Size is calculated from global variable numOfSquares
      */
@@ -43,17 +42,17 @@ function resizeTable() {
     /* Prompts user for new table size and redraws the sketchpad accordingly. 
      * Invalid input redraws the sketchpad at the current settings. */
 
-    curNumOfSquares = numOfSquares;
+    var curNumOfSquares = numOfSquares;
     
     input = prompt("Please enter a number between 4 and 96.", numOfSquares);
 
-    if ((input >= 4) || (input <= 96)) {
+    if ((input >= 4) && (input <= 96)) {
         numOfSquares = input;
     } else {
         numOfSquares = curNumOfSquares;
     }
 
-    buildTable();
+    buildTable(numOfSquares);
 
 }
 
