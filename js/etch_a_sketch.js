@@ -51,6 +51,8 @@ function resizeTable() {
 
     if ((input >= 4) || (input <= 96)) {
         numOfSquares = input;
+    } else {
+        numOfSquares = 16;
     }
 
     buildTable();
